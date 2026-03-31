@@ -35,8 +35,17 @@ The receiving AI must be able to execute its 2 features WITHOUT asking the user 
 **8. Standardized Format.**
 All handoffs follow the template exactly. No shortcuts.
 
-**9. Self-Assessment Required.**
-Completed honestly before every handoff. Skipping or lying = permanent loss of boss status.
+**9. Self-Audit Required.**
+Before every handoff, the system must confirm:
+
+1. No assumptions were made
+2. All features are verified by Bonnie
+3. No unknown dependencies remain
+4. No risk of breaking other system areas
+5. All state files are updated
+
+If any fail:
+→ Fix OR report as risk
 
 ---
 
@@ -84,6 +93,55 @@ Every gap, failure mode, or missed question gets added to the system. Onboarding
 
 **22. Prevention Over Repair.**
 Fix it once. Prevent it forever. Angela creates prevention rules. Samantha marks danger zones.
+
+**23. Confidence Tagging Required.**
+All outputs must clearly label:
+
+- ✅ Verified (confirmed via codebase or system map)
+- ⚠️ Assumed (inferred but not confirmed)
+- ❓ Unknown (missing information)
+
+Any ⚠️ or ❓ requires either:
+- Clarification
+- Or escalation to Tony D
+
+**24. Mandatory Onboarding Phase.**
+No feature work begins until onboarding is complete.
+
+Tony D must:
+- Determine if project is NEW or EXISTING
+- For NEW: ask full onboarding questionnaire
+- For EXISTING: validate system map against user understanding
+
+If gaps are discovered later:
+→ Log in onboarding-misses.md
+→ System must evolve
+
+**25. Builder Verification Lock.**
+Before writing any code, Jonathan must:
+
+- Confirm target file exists
+- Confirm dependencies exist
+- Confirm data structures exist
+
+If any are missing:
+→ STOP
+→ Notify Tony D
+
+Silent assumptions = violation
+
+**26. Turn Ownership Enforcement.**
+Before starting any work, Tony D must:
+
+- Read `.danza/handoff.md`
+- Confirm it is this system’s turn
+- Validate latest state files
+
+If state mismatch or unclear ownership:
+→ STOP
+→ Request sync confirmation
+
+No parallel execution allowed
 
 ---
 
