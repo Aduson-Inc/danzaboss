@@ -1,6 +1,6 @@
 ---
 name: research-pipeline
-description: Deep research on any topic using YouTube search + NotebookLM analysis. Collects video URLs, feeds to NotebookLM for heavy processing, returns distilled knowledge at ~1500 tokens instead of 100K+.
+description: Deep research on any topic using YouTube search + NotebookLM analysis. Collects 7-20 curated video URLs (5-tier by recency + views), feeds to NotebookLM, returns distilled knowledge at ~1500 tokens instead of 100K+.
 allowed-tools: Bash(python *), Bash(notebooklm *)
 ---
 
@@ -8,65 +8,70 @@ allowed-tools: Bash(python *), Bash(notebooklm *)
 
 Token-efficient deep research. Chains YouTube search (zero tokens) into NotebookLM (Google's tokens) and reads back a distilled summary (~1500 Claude tokens for what would normally cost 100K-500K).
 
+## CRITICAL RULES
+
+1. **7 minimum, 20 maximum sources.** Never exceed 20. NotebookLM free tier has limits.
+2. **No `add-research` command.** It adds hundreds of sources uncontrollably. Only use manual `source add` with curated URLs from yt_search.py.
+3. **Deduplicate before adding.** Never add the same URL twice. The script handles dedup internally.
+4. **One notebook per topic.** Check if a relevant notebook exists before creating new.
+5. **Verify notebook context** before adding sources. Run `notebooklm use <id>` first.
+
+## Search Tiers
+
+The yt_search.py script searches in 5 tiers, stopping when it has enough:
+
+| Tier | Window | Purpose |
+|------|--------|---------|
+| 1 | Last 7 days | Breaking/trending content |
+| 2 | Last 30 days | Recent coverage |
+| 3 | Last 90 days | Quarter's best |
+| 4 | Last 12 months | Annual proven content |
+| 5 | All time | Classics with high views |
+
+Skips videos under 2 minutes (shorts/ads). Deduplicates across all tiers.
+
 ## Instructions
 
 ### Step 1: Get the topic
-Take the research topic from `$ARGUMENTS`. If no arguments, ask the user what they need researched.
+Take from `$ARGUMENTS`. If none, ask user.
 
-### Step 2: Search YouTube for URLs
-Run the search script located in this skill's directory:
+### Step 2: Search YouTube
 ```bash
 python "<this skill's base directory>/yt_search.py" <topic>
 ```
-Parse the JSON output. Extract the `url` field from each result. Select the top 10 most relevant URLs.
 
-### Step 3: Create a NotebookLM notebook
+### Step 3: Create NotebookLM notebook
 ```bash
 notebooklm create "Research: <topic>" --json
+notebooklm use <notebook_id>
 ```
-Extract the notebook ID from the JSON output.
 
-### Step 4: Add YouTube URLs as sources
-For each of the top 10 URLs:
+### Step 4: Add URLs as sources (MAX 20)
 ```bash
-notebooklm source add "<url>" --json
+PYTHONIOENCODING=utf-8 notebooklm source add "<url>" --json
 ```
-Continue even if individual sources fail. Log failures but don't stop.
 
-### Step 5: Wait for source processing
+### Step 5: Wait for processing
 ```bash
-notebooklm source list --json
+PYTHONIOENCODING=utf-8 notebooklm source list --json
 ```
-All sources must show status `ready` before proceeding. If still processing, wait 15 seconds and check again. Max 10 checks.
+Wait until all `ready`. Max 5 checks, 30s apart.
 
-### Step 6: Query NotebookLM for structured knowledge
+### Step 6: Query
 ```bash
-notebooklm ask "Provide a comprehensive technical summary. Include: 1) Key concepts and how they work 2) Implementation patterns with code examples 3) Common pitfalls and how to avoid them 4) Best practices and recommendations. Be specific and actionable." --json
+PYTHONIOENCODING=utf-8 notebooklm ask "<question>" --json
 ```
 
 ### Step 7: Return results
-Present to the user or requesting agent:
-- The distilled summary from NotebookLM
-- Source count (how many videos were analyzed)
-- Notebook ID (for follow-up questions later)
+Distilled answer + source count + notebook ID.
 
-## Follow-up
-The notebook persists. Ask follow-up questions anytime:
-```bash
-notebooklm ask "Elaborate on [specific point]" --json
-```
+## Environment (Windows)
+Always use `PYTHONIOENCODING=utf-8` prefix for notebooklm commands.
 
 ## Token Economics
-| Step | Token cost |
-|------|-----------|
-| YouTube search | 0 (runs locally via yt-dlp) |
-| NotebookLM processing | 0 (Google's infrastructure) |
-| Reading the summary | ~500-1500 tokens |
-| **Total** | **~1500 tokens for deep research** |
-
-## Usage
-```
-/research-pipeline TikTok content publishing API
-/research-pipeline OAuth 2.0 PKCE flow implementation
-/research-pipeline FastAPI WebSocket patterns
-```
+| Step | Cost |
+|------|------|
+| YouTube search | 0 |
+| NotebookLM | 0 (Google) |
+| Reading summary | ~500-1500 |
+| **Total** | **~1500 tokens** |
