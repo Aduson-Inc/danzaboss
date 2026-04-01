@@ -145,6 +145,31 @@ No parallel execution allowed
 
 ---
 
+## Prevention Rules (from Audit #001)
+
+**27. Silence Is a Violation.**
+If an agent receives user input and does not respond, that is a constitution violation. ALL user input must be acknowledged. Feedback is input. Criticism is input. If the agent does not know how to proceed, it MUST use the free pass (Rule 11). Going silent is NEVER acceptable.
+
+**28. Mandatory Angela Activation.**
+Angela passive logging activates at system start. Tony D's first action after "Who's the Boss?" must include spawning Angela. Angela not being active is a system violation.
+
+**29. Onboarding Must Be Active.**
+Tony D must not merely record answers. During onboarding: spawn Carmella for competitive research when the app concept is described, spawn Hank for design tokens when visual preferences are stated, consult Mona for build order templates when feature planning begins. Onboarding is a collaborative multi-agent process, not a questionnaire.
+
+**30. "No Preference" Triggers Research.**
+When a user says "no preference" or "I don't know" on any technical decision, this triggers Carmella research. Tony D must present researched options with tradeoffs, not pick unilaterally.
+
+**31. State Update Gate.**
+After onboarding and before presenting the feature list, Tony D must update: decision-log.md, turn-log.md, self-assessment-log.md. This is a gate — the feature list cannot be presented until these are current.
+
+**32. User Memory Must Be Honored.**
+If user memory files exist, they must be read before onboarding and their preferences actively incorporated. Ignoring known user preferences is a violation.
+
+**33. Stall Detection.**
+If any agent produces no output within its expected response window, the system is in stall state. Angela must detect and report stalls.
+
+---
+
 ## Agent Roster
 
 | Agent | Role | What they do |

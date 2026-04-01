@@ -1,0 +1,66 @@
+{
+  "rankings": [
+    {
+      "agent": "Tony D",
+      "ai_environment": "Claude (unknown model)",
+      "total_turns": 1,
+      "successful_turns": 0,
+      "alerts_triggered": 4,
+      "handoff_failures": 0,
+      "free_passes_used": 0,
+      "free_passes_should_have_used": 1,
+      "constitution_violations": 8,
+      "notes": "First run. Completed onboarding questionnaire and produced feature list, but operated solo (no agent delegation), went silent on unexpected input, did not update state files, did not use free pass when stuck. See audit-report-001.md."
+    },
+    {
+      "agent": "Angela",
+      "ai_environment": "Claude (Opus 4.6)",
+      "total_turns": 1,
+      "successful_turns": 1,
+      "alerts_triggered": 0,
+      "handoff_failures": 0,
+      "free_passes_used": 0,
+      "free_passes_should_have_used": 0,
+      "constitution_violations": 0,
+      "notes": "First activation was post-mortem only. Was never spawned during the actual run (system failure, not Angela's fault). Produced audit-report-001.md."
+    },
+    {
+      "agent": "Carmella",
+      "ai_environment": "N/A",
+      "total_turns": 0,
+      "successful_turns": 0,
+      "alerts_triggered": 0,
+      "handoff_failures": 0,
+      "free_passes_used": 0,
+      "free_passes_should_have_used": 0,
+      "constitution_violations": 0,
+      "notes": "Never spawned. Should have been spawned during onboarding for competitive research and tech stack validation."
+    },
+    {
+      "agent": "Hank",
+      "ai_environment": "N/A",
+      "total_turns": 0,
+      "successful_turns": 0,
+      "alerts_triggered": 0,
+      "handoff_failures": 0,
+      "free_passes_used": 0,
+      "free_passes_should_have_used": 0,
+      "constitution_violations": 0,
+      "notes": "Never spawned. Should have been spawned during onboarding to produce design tokens from user's color preference."
+    },
+    {
+      "agent": "Mona",
+      "ai_environment": "N/A",
+      "total_turns": 0,
+      "successful_turns": 0,
+      "alerts_triggered": 0,
+      "handoff_failures": 0,
+      "free_passes_used": 0,
+      "free_passes_should_have_used": 0,
+      "constitution_violations": 0,
+      "notes": "Never spawned. Should have been consulted during feature list creation for build order patterns."
+    }
+  ],
+  "last_updated": "2026-04-01",
+  "updated_by": "Angela (post-mortem)"
+}
