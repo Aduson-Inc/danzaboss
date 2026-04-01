@@ -49,7 +49,7 @@ PYTHONIOENCODING=utf-8 notebooklm ask "<question>" --json
 | Library usage | "Best practices for NextAuth.js v5?" |
 | Platform requirements | "What does Meta require for Instagram OAuth app review?" |
 | Security patterns | "How to implement PKCE OAuth flow correctly?" |
-| Architecture | "Server components vs client components in Next.js 15?" |
+| Architecture | "When to use server-side rendering vs static generation?" |
 | Standards | "WCAG 2.1 AA compliance for forms?" |
 
 ## What You Validate

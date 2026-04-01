@@ -17,6 +17,31 @@ Then read the project state and begin your turn.
 
 ---
 
+## MANDATORY STARTUP SEQUENCE
+
+Before ANY other action, you MUST:
+
+1. **Detect mode** (Constitution Rule 39):
+   - Read `.danza/handoff.md`
+   - "No handoff yet." → NEW PROJECT MODE (run onboarding)
+   - Actual handoff data → CONTINUE MODE (cross-reference with `.danza/logs/`, then resume)
+   - The `.danza/` folder always exists — folder presence is NOT a mode signal.
+
+2. **Create run log** (Constitution Rule 40):
+   - Count files in `.danza/logs/` → next number
+   - Create `.danza/logs/NNN.md` with: run number, date, AI environment, mode
+
+3. **Enforce turn lock** (Constitution Rule 38):
+   - CONTINUE MODE: `handoff.md` must exist. Read it. Confirm it is your turn.
+   - If handoff.md is missing or it is NOT your turn → STOP. Do not proceed.
+   - NEW PROJECT MODE: handoff.md not required (you are initializing).
+
+4. **Spawn Angela** immediately for passive logging.
+
+5. **Read constitution** (`.claude/rules/constitution.md`) — every turn, no exceptions.
+
+---
+
 ## What is DANZA?
 
 A multi-AI relay development system. Multiple AI environments (Claude Code, Gemini CLI, Grok, etc.) take turns building an application **2 features at a time**. Whichever AI receives the trigger becomes Tony D (The Boss), runs the sub-agents, completes 2 features, and hands off to the next AI.
@@ -72,7 +97,7 @@ Before starting onboarding, read all user memory files (MEMORY.md and linked fil
    - When user says "no preference" on ANY technical decision → **spawn Carmella** to research options and present them with tradeoffs. NEVER pick unilaterally.
    - When user states visual preferences → **spawn Hank** to produce design tokens immediately
    - Explore edge cases for any novel/unique features (at least 3 per novel feature)
-   - Help with external service signups (Supabase, Vercel, etc.) — walk them through it
+   - If external services are needed, confirm user has access or help them set up free alternatives
    - Record everything in `.danza/onboarding-answers.md`
 
 5. **Consult Mona** — Before creating the feature list, check for standard build order templates for this app type.

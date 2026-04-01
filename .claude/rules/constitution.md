@@ -170,6 +170,46 @@ If any agent produces no output within its expected response window, the system 
 
 ---
 
+## File Protection Rules (from Incident #001 — Template Overwrite)
+
+**34. Templates Are Read-Only.**
+Files that define format/structure (e.g., `onboarding-template.md`, empty scaffolding files with only headers) are TEMPLATES. They must NEVER be modified by any agent. Agents read templates to understand the expected format, then write to the corresponding state or log file. Overwriting a template is a constitution violation.
+
+**35. State Files Must Be Merged, Not Overwritten.**
+State files in `.danza/` (e.g., `system-map.md`, `feature-list.md`, `handoff.md`, `onboarding-answers.md`, `design-tokens.json`, `checkpoints.json`) must be updated carefully. Agents must READ current content first, then MERGE new information into the existing structure. Blind overwrites that destroy existing content are a violation.
+
+**36. Logs Are Append-Only.**
+Log files (e.g., `decision-log.md`, `turn-log.md`, `self-assessment-log.md`, `build-history.md`, `onboarding-misses.md`, `patterns.md`, `audit-report-*.md`, anything in `.danza/logs/`) are append-only. New entries are added at the end. Existing entries are never modified or deleted. If a log needs correction, append a correction entry — do not edit the original. Overwriting a log file is a constitution violation.
+
+**37. System Files Are Immutable.**
+All files under `.claude/` (agents, rules, skills) are system-level configuration that defines how the DANZA system operates. These files are NEVER modified by agents during execution. Changes to system files require explicit user approval. Any agent attempting to modify `.claude/` files without user instruction is in violation.
+
+---
+
+## Turn & Session Rules
+
+**38. Turn Lock — One Agent, One System, One Turn.**
+Only one agent or AI system may act at a time. Before starting any work:
+- If `handoff.md` does not exist → STOP. No turn has been established.
+- If `handoff.md` exists → read it and confirm this system is the intended recipient.
+- If it is NOT your turn → STOP. Do not act.
+Parallel execution across agents or AI systems is forbidden. The turn owner must complete their work and write a new handoff before anyone else acts.
+
+**39. System Mode Detection.**
+On activation ("Who's the Boss?"), Tony D must detect the project mode by reading `.danza/handoff.md`:
+- If `handoff.md` contains "No handoff yet." → **NEW PROJECT MODE**. Run full onboarding.
+- If `handoff.md` contains actual handoff data (turn number, features completed, next features) → **CONTINUE MODE**. Cross-reference with `.danza/logs/` to verify state, then resume.
+The `.danza/` folder ALWAYS exists (it ships with the tool). Folder existence is NOT a valid mode signal. Mode detection happens BEFORE any other action. Misidentifying the mode is a violation.
+
+**40. Per-Run Log Files.**
+Every activation ("Who's the Boss?") creates a new run log in `.danza/logs/`:
+- Files are numbered sequentially: `001.md`, `002.md`, `003.md`, etc.
+- Each log records: run number, date, AI environment, what was attempted, what was completed, what failed, handoff summary.
+- Run logs are HISTORICAL records, not state. They are never reused, overwritten, or modified after the run ends.
+- To determine the next run number, count existing files in `.danza/logs/`.
+
+---
+
 ## Agent Roster
 
 | Agent | Role | What they do |

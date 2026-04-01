@@ -1,3 +1,3 @@
 # Build Orders
 
-Standard build sequences maintained by Mona.
+Maintained by Mona. Standard build sequences by app type.

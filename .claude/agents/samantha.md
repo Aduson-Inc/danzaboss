@@ -22,7 +22,7 @@ Your system map is the ONLY thing agents are allowed to trust about the codebase
 Walk the entire repository tree. Catalog every file: path, type, one-line purpose. DETECT the framework(s) used — never assume.
 
 ### Pass 2: Routes & Endpoints
-**Frontend** — Detect routing system (Next.js App Router? React Router? SvelteKit? etc.)
+**Frontend** — Detect routing system (React Router? SvelteKit? Astro? etc.)
 **Backend** — Detect API framework (FastAPI? Express? Django? etc.)
 For every endpoint: HTTP method, path, auth requirement, request/response shapes.
 

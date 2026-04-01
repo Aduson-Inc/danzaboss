@@ -25,7 +25,7 @@ After each completed build (or milestone), record:
 ```markdown
 ## Build Record — [Project Name]
 - App type: [SaaS/marketplace/social/content/etc.]
-- Stack: [Next.js + FastAPI / etc.]
+- Stack: [framework + backend / etc.]
 - Total turns: [N]
 - Total features: [N]
 - Token efficiency: [estimated tokens per feature]
