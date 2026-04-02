@@ -1,0 +1,9 @@
+{
+  "name": "Goal Posts",
+  "short_name": "GoalPosts",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#CC0000",
+  "background_color": "#0F0F1E",
+  "icons": []
+}

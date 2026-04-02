@@ -1,6 +1,41 @@
 {
-  "colors": {},
-  "fonts": {},
-  "spacing": {},
-  "borderRadius": {}
+  "colors": {
+    "primary": "#CC0000",
+    "primaryDark": "#990000",
+    "secondary": "#003366",
+    "secondaryDark": "#002244",
+    "accent": "#FFD700",
+    "ice": "#E8F4F8",
+    "iceWhite": "#F5F9FC",
+    "boards": "#2C1810",
+    "surface": "#1A1A2E",
+    "surfaceLight": "#25253E",
+    "background": "#0F0F1E",
+    "textPrimary": "#FFFFFF",
+    "textSecondary": "#B0B0C0",
+    "success": "#00CC66",
+    "warning": "#FFD700",
+    "error": "#FF4444",
+    "goalLight": "#FF0000"
+  },
+  "fonts": {
+    "heading": "'Oswald', sans-serif",
+    "body": "'Inter', sans-serif",
+    "scoreboard": "'Share Tech Mono', monospace"
+  },
+  "spacing": {
+    "xs": "0.25rem",
+    "sm": "0.5rem",
+    "md": "1rem",
+    "lg": "1.5rem",
+    "xl": "2rem",
+    "xxl": "3rem"
+  },
+  "borderRadius": {
+    "sm": "0.25rem",
+    "md": "0.5rem",
+    "lg": "1rem",
+    "full": "9999px",
+    "rink": "50%"
+  }
 }
