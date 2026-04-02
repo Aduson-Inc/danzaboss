@@ -24,7 +24,7 @@ export function TeamProvider({ children }) {
     setLoading(true);
     try {
       const res = await apiClient.get(`/teams/${id}`);
-      setCurrentTeam(res.data.team);
+      setCurrentTeam({ team: res.data.team, roster: res.data.roster });
     } catch (err) {
       console.error('Failed to fetch team:', err);
     } finally {
@@ -55,8 +55,8 @@ export function TeamProvider({ children }) {
       if (!prev) return prev;
       return {
         ...prev,
-        members: prev.members.map((m) =>
-          m.userId === userId || m._id === userId ? { ...m, role } : m
+        roster: (prev.roster || []).map((m) =>
+          m.user_id === userId ? { ...m, role } : m
         ),
       };
     });
@@ -68,8 +68,8 @@ export function TeamProvider({ children }) {
       if (!prev) return prev;
       return {
         ...prev,
-        members: prev.members.map((m) =>
-          m.userId === userId || m._id === userId ? { ...m, position } : m
+        roster: (prev.roster || []).map((m) =>
+          m.user_id === userId ? { ...m, position } : m
         ),
       };
     });
@@ -81,9 +81,7 @@ export function TeamProvider({ children }) {
       if (!prev) return prev;
       return {
         ...prev,
-        members: prev.members.filter(
-          (m) => m.userId !== userId && m._id !== userId
-        ),
+        roster: (prev.roster || []).filter((m) => m.user_id !== userId),
       };
     });
   }, []);
