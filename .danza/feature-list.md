@@ -1,12 +1,12 @@
 # Feature List
 
-## In Progress
-1. Authentication System (email/password, bcrypt, JWT)
-2. Team Management (create team, commissioner invites, roles, roster)
+## Completed
+1. Authentication System (email/password, bcrypt, JWT) — Turn 1
+2. Team Management (create team, commissioner invites, roles, roster) — Turn 1
+3. Game Session Flow (create session, join/leave, start/end game, Socket.io real-time) — Turn 2
+4. Live Stat Tracking (tap to record goals/assists/penalties, dispute voting, commissioner tiebreaker) — Turn 2
 
 ## Pending
-3. Game Session Flow (create session, connect players, end game)
-4. Live Stat Tracking (tap to record goals/assists/penalties, dispute voting)
 5. Stat Leaderboard (cumulative stats across games, rankings)
 6. Voice Chat (WebRTC peer-to-peer, 2-6 players)
 7. Live Soundboard (goal horn, boos, cheers during gameplay)
@@ -16,5 +16,5 @@
 11. Team Jersey Designer (commissioner designs master, colors, stripes)
 12. Custom Hockey Night in Canada Mock Theme Music
 
-## Completed
-- (none yet)
+## In Progress
+- (none)

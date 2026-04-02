@@ -16,3 +16,10 @@ Format:
 - Tasks: Full onboarding, Feature 1 (Auth System), Feature 2 (Team Management)
 - Timestamp: 2026-04-02
 - Run Log: .danza/logs/001.md
+
+## Turn 2
+
+- AI: Claude Opus 4.6 (Claude Code CLI)
+- Tasks: Feature 3 (Game Session Flow), Feature 4 (Live Stat Tracking)
+- Timestamp: 2026-04-02
+- Run Log: .danza/logs/004.md

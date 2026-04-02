@@ -83,6 +83,14 @@ export default function TeamPage() {
           </div>
         </div>
 
+        {/* Game Session Button */}
+        <Link
+          to={`/teams/${teamId}/game`}
+          className="btn-accent block text-center w-full text-base"
+        >
+          Game Session
+        </Link>
+
         {/* Invite Players (commissioner only) */}
         {isCommissioner && <InvitePlayer teamId={teamId} />}
 

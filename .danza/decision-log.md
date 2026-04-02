@@ -53,3 +53,35 @@ Format:
 - Chosen: Turn 1: Auth+Teams → Turn 2: Sessions+Stats → Turn 3: Leaderboard+Voice → Turn 4: Soundboard+Highlights → Turn 5: Avatar+Roasts → Turn 6: Jersey+Music
 - Reason: Dependency chain. Each turn builds on what the previous established. Data flows downhill.
 - Impact: 6 turns to complete all must-have features.
+
+---
+
+## Run 004 — 2026-04-02
+
+### Decision 7: Socket.io Integration for Real-Time
+- Decision: How to implement real-time game session updates
+- Options: Polling, Server-Sent Events, Socket.io
+- Chosen: Socket.io (as specified in onboarding)
+- Reason: User's tech stack explicitly includes Socket.io. Real-time is critical for game sessions — players joining/leaving, stats being recorded, disputes being voted on must update instantly for all participants.
+- Impact: socket.io v4 added to server+client. Server uses HTTP server wrapping Express. Socket rooms per session (`session:{id}`). Vite proxy configured for WebSocket.
+
+### Decision 8: Socket.io Access Pattern in Routes
+- Decision: How routes emit Socket.io events
+- Options: Import io directly, attach to app via app.set(), pass as middleware
+- Chosen: `app.set('io', io)` + `req.app.get('io')` in route handlers
+- Reason: Follows Express conventions. Avoids circular imports. Models stay pure (no socket dependency). Routes emit events after successful DB operations.
+- Impact: Clean separation — models handle data, routes handle HTTP + emit events.
+
+### Decision 9: Dispute Resolution Flow
+- Decision: How stat disputes are resolved
+- Options: Simple majority, unanimous, commissioner-only, hybrid
+- Chosen: Hybrid — all players vote. Majority wins. If tied, commissioner breaks tie.
+- Reason: Matches user's onboarding answer exactly: "Goes to secret vote. Most votes wins. Tie → commissioner decides."
+- Impact: Auto-resolves when all session players have voted AND there's a clear majority. Tied disputes emit 'dispute-tied' event and wait for commissioner. Overturned stats are deleted from DB. Upheld stats have disputed flag cleared.
+
+### Decision 10: Session State Machine
+- Decision: Game session lifecycle states
+- Options: Various state machines
+- Chosen: waiting → active → completed (3 states, forward-only)
+- Reason: Matches existing migration schema exactly (CHECK constraint on status column). Simple and sufficient — no pausing needed per user requirements.
+- Impact: Only one active/waiting session per team at a time. Creator or commissioner can start/end.
