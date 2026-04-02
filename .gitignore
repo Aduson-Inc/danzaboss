@@ -19,9 +19,9 @@ Thumbs.db
 *.pem
 
 # Common build artifacts (added by agents per project)
-/node_modules
+node_modules/
 /build
-/dist
+dist/
 /out
 __pycache__/
 *.pyc
