@@ -55,6 +55,12 @@ Turn: [turn number]
 - Auth: [method]
 - Hosting: [if detectable]
 
+## Environment Capabilities
+- MCP Servers: [list detected servers with tool counts, or "None detected"]
+- Other Tools: [any non-standard tools beyond Read/Write/Edit/Bash/Glob/Grep/Agent]
+- Last Verified: [timestamp + AI environment]
+- User-Approved for Project: [tools user confirmed during onboarding, or "Pending onboarding"]
+
 ## File Structure
 [Annotated tree]
 

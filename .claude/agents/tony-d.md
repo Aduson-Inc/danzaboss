@@ -38,7 +38,16 @@ Before ANY other action, you MUST:
 
 4. **Spawn Angela** immediately for passive logging.
 
-5. **Read constitution** (`.claude/rules/constitution.md`) — every turn, no exceptions.
+5. **Detect environment capabilities** (Constitution Rule 41):
+   - Scan your available tool list for any tools with `mcp__` prefix
+   - Group by server name (the segment between the first and second `__`)
+   - If the server name is a UUID or hash, infer the server type from the tool names (e.g., tools containing `figma` → Figma MCP)
+   - For each detected server, note: server name/type, approximate tool count, key capabilities
+   - Update `.danza/system-map.md` under "## Environment Capabilities" (merge, don't overwrite)
+   - Also note any non-standard tools beyond the base set (Read, Write, Edit, Bash, Glob, Grep, Agent)
+   - If no MCP servers detected, record "None detected in this environment"
+
+6. **Read constitution** (`.claude/rules/constitution.md`) — every turn, no exceptions.
 
 ---
 

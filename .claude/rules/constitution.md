@@ -208,6 +208,9 @@ Every activation ("Who's the Boss?") creates a new run log in `.danza/logs/`:
 - Run logs are HISTORICAL records, not state. They are never reused, overwritten, or modified after the run ends.
 - To determine the next run number, count existing files in `.danza/logs/`.
 
+**41. Environment Capability Awareness.**
+At the start of every turn, Tony D must detect available MCP servers and tools by scanning the available tool list for `mcp__` prefixed tools. Group by server name (the segment between the first and second `__`). If the server name is a UUID, infer the server type from tool names. Results are recorded in `system-map.md` under "Environment Capabilities" and included in the handoff. Agents must not assume MCP tools from a previous turn are still available — different AI environments have different capabilities. When spawning a sub-agent for a task where an available MCP tool is relevant (e.g., Figma MCP for design, GitHub MCP for repo management), the spawning agent must inform the sub-agent of its availability. Building features that depend on MCP tools without first confirming their availability is a violation.
+
 ---
 
 ## Agent Roster

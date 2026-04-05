@@ -97,6 +97,39 @@ Options:
 
 ---
 
+## 6B. ENVIRONMENT TOOLS & PLUGINS
+
+**"Let me check what tools are available in this environment..."**
+
+Tony D scans for MCP servers and plugins (tools prefixed with `mcp__`), then presents findings:
+
+- "I can see you have [X MCP server] with [Y capabilities]."
+- "I also have access to [Z plugin/tool]."
+
+**THEN ASK:**
+"Would you like us to use any of these for this project? Here's what each one could help with:"
+
+For each detected tool/server:
+→ Briefly explain what it does in plain language
+→ Suggest how it could be useful for THIS specific app
+→ Ask if the user wants to include it
+
+**IF FIGMA MCP DETECTED:**
+→ "Do you have Figma designs for this project? I can pull design context directly."
+→ If yes: Record Figma file URLs in onboarding answers
+
+**IF GITHUB MCP DETECTED:**
+→ "I can manage GitHub issues, PRs, and code search directly. Want me to use these?"
+→ If yes: Confirm repo name
+
+**IF NO MCP SERVERS DETECTED:**
+→ "Your environment doesn't have any extra plugins configured. That's totally fine — we have everything we need built in."
+→ Move on
+
+Record all decisions in `.danza/onboarding-answers.md` under "## Environment Tools"
+
+---
+
 ## 7. FRONTEND / UI
 
 **"How should your app look and feel?"**
